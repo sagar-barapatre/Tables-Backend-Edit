@@ -1,0 +1,95 @@
+
+<!-- include header -->
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CRUD Application</title>
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+        </head>
+        
+        <body>
+
+    <!-- Main Site -->
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <a href="/add-user" class="border-shadow">
+                    <span class="text-gradient">New User <i class="fas fa-user-plus"></i></span>
+                </a>
+            </div>
+
+            <!-- form handling -->
+            <form action="/" method="POST">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Pricing</th>
+                            <th>Date</th>
+                            <th>Pickup Location</th>
+                            <th>Drop Location</th>
+                            <th>Email ID</th>
+                            <th>Extra Messages</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < users.length; i++) { %>
+                            <tr>
+                                <td>
+                                    <%= users[i].firstandlastname %>
+                                </td>
+                                <td>
+                                    <%= users[i].Pricing %>
+                                </td>
+                                <td>
+                                    <%= users[i].Date %>
+                                </td>
+                                <td>
+                                    <%= users[i].PickupState %>, <%= users[i].PickupCity %>
+                                </td>
+                                <td>
+                                    <%= users[i].DropState %>, <%= users[i].DropCity %>
+                                </td>
+                                <td>
+                                    <%= users[i].emailID %>
+                                </td>
+                                <td>
+                                    <%= users[i].extraMessages %>
+                                </td>
+                                <td>
+                                    <a href="/update-user?id=<%= users[i]._id%>" class="btn border-shadow update">
+                                        <span class="text-gradient"><i class="fas fa-edit"></i></span>
+                                    </a>
+                                    <a class="btn border-shadow delete" data-id=<%=users[i]._id%> >
+                                        <span class="text-gradient"><i class="fas fa-trash-alt"></i></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </main>
+<!-- /Main Site -->
+
+
+<!-- include footer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+<script src="/js/index.js"></script>
+</body>
+
+</html>
+<!-- /include footer -->
