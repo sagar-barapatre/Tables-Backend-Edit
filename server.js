@@ -22,7 +22,8 @@ mongoose.connect(process.env.MONGO_URI, {
 console.log("MongoDB connected...");
 
 // parse request to body-parser
-app.use(bodyparser.urlencoded({ extended : true}))
+app.use(bodyparser.urlencoded({ extended: true }));
+
 
 // set view engine
 app.set("view engine", "ejs")
@@ -141,7 +142,13 @@ app.put("/api/users/:id", (req, res) => {
   }
 
   const id = req.params.id;
-  Userdb.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  Userdb.updateOne(
+    { _id: id },
+    { $set: req.body },
+    {
+      upsert: true,
+    }
+  )
     .then((data) => {
       if (!data) {
         res.status(404).send({
